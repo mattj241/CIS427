@@ -51,8 +51,7 @@ public class Client
 			System.err.println("Couldn't get I/O for the connection to: hostname");
 		}
 
-		// If everything has been initialized then we want to write some data
-		// to the socket we have opened a connection to on port 25
+		System.out.println("Connected to Host!");
 
 		if (clientSocket != null && os != null && is != null) 
 		{

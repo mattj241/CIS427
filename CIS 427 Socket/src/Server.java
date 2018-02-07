@@ -84,6 +84,10 @@ public class Server {
 		
 		if (inputNum == 1)
 		{
+			for (int i = 0; i < inputArray.length; i++)
+			{
+				System.out.print(inputArray[i] + " ");
+			}
 			if (recordToBeSet == 0)
 			{
 				recordToBeSet = 1001;
@@ -97,7 +101,7 @@ public class Server {
 				bufferArray[i] = inputArray[i];
 			}
 			infoLog.add(bufferArray);
-			System.out.println(message_OK + " Add listing to log...");
+			System.out.println("\n" + message_OK + " Add listing to log...");
 			return message_OK + newRecord + bufferArray[0];
 		}
 		else if (inputNum == 2)
@@ -105,7 +109,10 @@ public class Server {
 			boolean found = false;
 
 			idToCheck = inputArray[1];
-			System.out.println(idToCheck);
+			for (int i = 0; i < inputArray.length; i++)
+			{
+				System.out.print(inputArray[i] + " ");
+			}
 			for (int i = 0; i < infoLog.size() && !found; i++)
 			{
 				if (Objects.equals(idToCheck, infoLog.get(i)[0]))
@@ -116,10 +123,10 @@ public class Server {
 			}
 			if (found)
 			{
-				System.out.println(message_OK + " Removing listing in log...");
+				System.out.println("\n" + message_OK + " Removing listing in log...");
 				return message_OK;
 			}else {
-				System.out.println("ID not found");
+				System.out.println("\nID not found");
 				return message_NotFound;
 			}
 		}
@@ -154,7 +161,7 @@ public class Server {
 		}
 		else
 		{
-			System.out.println(message_OK + "SHUTDOWN");
+			System.out.println(message_OK + " SHUTDOWN");
 			System.out.println("Shutting down...Writing Log memory to file");
 			writeToFile(); //Writes all of the data to file upon shutting down
 			return message_OK + "SHUTDOWN";
@@ -240,9 +247,6 @@ public class Server {
 			System.out.println(e);
 		}   
 
-		// Create a socket object from the ServerSocket to listen and accept connections.
-		// Open input and output streams
-
 		while (true)
 		{
 			try 
@@ -251,6 +255,7 @@ public class Server {
 				is = new BufferedReader (new InputStreamReader(serviceSocket.getInputStream()));
 				os = new PrintStream(serviceSocket.getOutputStream());
 				boolean done = false;
+				System.out.println("Client Connected!");
 
 				while ((line = is.readLine()) != null) 
 				{
