@@ -216,20 +216,26 @@ public class Server {
 
 			Scanner fileScanner = new Scanner(new File(fileName));
 			
-			//Parse the file
-			while(fileScanner.hasNextLine())
+			if (fileScanner.hasNextLine())
 			{
-				String text = fileScanner.nextLine();
-				if (text.matches("\\d{4}$"))
+				//Parse the file
+				while(fileScanner.hasNextLine())
 				{
-					recordToBeSet = Integer.parseInt(text);
-
+					String text = fileScanner.nextLine();
+					if (text.matches("\\d{4}$"))
+					{
+						recordToBeSet = Integer.parseInt(text);
+					}
+					else
+					{
+						String [] infoLogLine = text.split("@");
+						infoLog.add(infoLogLine);
+					}
 				}
-				else
-				{
-					String [] infoLogLine = text.split("@");
-					infoLog.add(infoLogLine);
-				}
+			}
+			else
+			{
+				recordToBeSet = 0;
 			}
 			fileScanner.close();         
 		}
